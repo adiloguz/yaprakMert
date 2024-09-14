@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Speech on Click</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #6A0572, #AB83A1);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: white;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tıkla bakalım ne olucak 😆</h1>
+
+  <script>
+    // Sesli metin için fonksiyon
+    function speakText(text) {
+      // Mevcut konuşmaları iptal et
+      window.speechSynthesis.cancel();
+      
+      // Yeni konuşma komutu oluştur
+      const speech = new SpeechSynthesisUtterance();
+      speech.text = text;
+      speech.lang = 'tr-TR'; // Türkçe seslendirme
+      speech.volume = 1; // Ses yüksekliği (0-1 arası)
+      speech.rate = 1; // Konuşma hızı (0.1-10 arası)
+      speech.pitch = 1; // Ses tonu (0-2 arası)
+      
+      window.speechSynthesis.speak(speech);
+    }
+
+    // Tıklama olayında sesli metin
+    document.body.addEventListener('click', function() {
+      const message = "Zenci mert adil en büyük oyuncudur ağla kudur hoşt ."; // Burada istediğin Türkçe metni yaz
+      speakText(message);
+    });
+  </script>
+</body>
+</html>
